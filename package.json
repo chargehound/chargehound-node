@@ -1,6 +1,6 @@
 {
   "name": "chargehound",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically fight disputes in Stripe",
   "main": "dist/index.js",
   "engines": {

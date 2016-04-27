@@ -1,8 +1,10 @@
-# Chargehound node.js bindings [![Build Status](https://travis-ci.org/chargehound/chargehound-node.png?branch=master)](https://travis-ci.org/chargehound/chargehound-node)
+# Chargehound node.js bindings 
 
-<!-- ## Installation
+[![Build Status](https://travis-ci.org/chargehound/chargehound-node.svg?branch=master)](https://travis-ci.org/chargehound/chargehound-node) [![npm version](https://badge.fury.io/js/chargehound.svg)](https://badge.fury.io/js/chargehound)
 
-`npm install chargehound` -->
+## Installation
+
+`npm install chargehound`
 
 ## Usage
 

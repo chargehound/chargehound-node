@@ -1,15 +1,17 @@
 /* eslint-env mocha */
 
 const Chargehound = require('../../lib')
+const clientVersion = require('../../package.json').version
 const nock = require('nock')
 
 const chargehound = new Chargehound('API_KEY')
+const CHARGEHOUND_USERAGENT = 'Chargehound/v1 NodeBindings/' + clientVersion
 
 const getHeaders = {
   'accept': 'application/json',
   'authorization': 'Basic QVBJX0tFWTo=',
   'host': 'api.chargehound.com',
-  'user-agent': 'Chargehound/v1 NodeBindings/1.0.0'
+  'user-agent': CHARGEHOUND_USERAGENT
 }
 
 const postHeaders = {
@@ -17,7 +19,7 @@ const postHeaders = {
   'authorization': 'Basic QVBJX0tFWTo=',
   'content-type': 'application/json',
   'host': 'api.chargehound.com',
-  'user-agent': 'Chargehound/v1 NodeBindings/1.0.0'
+  'user-agent': CHARGEHOUND_USERAGENT
 }
 
 describe('dispute', function () {

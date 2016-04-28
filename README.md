@@ -36,9 +36,9 @@ chargehound.Disputes.submit('dp_xxx', {fields: {customer_name: 'Susie'}})
   });
 ```
 
-<!-- ## Resources
+## Resources
 
-[Disputes](https://www.chargehound.com/docs/?javascript#disputes) -->
+[Disputes](https://www.chargehound.com/docs/api/index.html?javascript#disputes)
 
 ## Development
 

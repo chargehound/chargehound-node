@@ -1,2 +1,5 @@
 1.0.0 April, 2016
   - Initial release with disputes API
+
+1.1.0 May 16th, 2016
+  - Make error types public

@@ -9,7 +9,24 @@ chargehound.Disputes.list()
     console.log(`First dispute id: ${first.id}`)
     return chargehound.Disputes.submit(first.id, {
       template: 'crowdfunding',
-      fields: { 'customer_ip': '001' }
+      fields: { 'customer_ip': '0.0.0.0' },
+      products: [{
+        name: 'Product Name 1',
+        description: 'Product Description (optional)',
+        image: 'Product Image URL (optional)',
+        sku: 'Stock Keeping Unit (optional)',
+        quantity: 1,
+        amount: 1000,
+        url: 'Product URL (optional)'
+      },{
+        name: 'Product Name 2',
+        description: 'Product Description (optional)',
+        image: 'Product Image URL (optional)',
+        sku: 'Stock Keeping Unit (optional)',
+        quantity: '10oz',
+        amount: 2000,
+        url: 'Product URL (optional)'
+      }]
     })
   })
   .then(function (res) {

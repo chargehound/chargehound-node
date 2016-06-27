@@ -18,7 +18,7 @@ chargehound.Disputes.list()
         quantity: 1,
         amount: 1000,
         url: 'Product URL (optional)'
-      },{
+      }, {
         name: 'Product Name 2',
         description: 'Product Description (optional)',
         image: 'Product Image URL (optional)',

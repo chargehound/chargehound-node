@@ -34,4 +34,19 @@ describe('errors', function () {
       done()
     })
   })
+
+  it('should throw a timeout error', function (done) {
+    const chargehound = new Chargehound('API_KEY', { timeout: 50 })
+    const scope = nock('https://api.chargehound.com')
+      .get('/v1/disputes')
+      .socketDelay(100)
+      .reply(400, {'error': {'status': 400, 'message': 'Bad request'}})
+
+    chargehound.Disputes.list()
+    .catch(function (err) {
+      expect(err.code).to.eql('ESOCKETTIMEDOUT')
+      scope.done()
+      done()
+    })
+  })
 })

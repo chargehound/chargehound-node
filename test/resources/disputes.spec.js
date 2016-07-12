@@ -62,6 +62,36 @@ describe('dispute', function () {
           done()
         })
     })
+
+    it('Can include product information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+          .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}})
+          .reply(201, {'id': 'dp_123'})
+
+      chargehound.Disputes.submit('dp_123', {
+        fields: {customer_name: 'Susie'},
+        products: [{
+          name: 'Product Name 1',
+          description: 'Product Description (optional)',
+          image: 'Product Image URL (optional)',
+          sku: 'Stock Keeping Unit (optional)',
+          quantity: 1,
+          amount: 1000,
+          url: 'Product URL (optional)'
+        }, {
+          name: 'Product Name 2',
+          description: 'Product Description (optional)',
+          image: 'Product Image URL (optional)',
+          sku: 'Stock Keeping Unit (optional)',
+          quantity: '10oz',
+          amount: 2000,
+          url: 'Product URL (optional)'
+        }]})
+        .then(function (body) {
+          scope.done()
+          done()
+        })
+    })
   })
 
   describe('update', function (done) {
@@ -74,6 +104,36 @@ describe('dispute', function () {
           scope.done()
           done()
         })
+    })
+
+    it('Can include product information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+          .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}})
+          .reply(201, {'id': 'dp_123'})
+
+      chargehound.Disputes.update('dp_123', {
+        fields: {customer_name: 'Susie'},
+        products: [{
+          name: 'Product Name 1',
+          description: 'Product Description (optional)',
+          image: 'Product Image URL (optional)',
+          sku: 'Stock Keeping Unit (optional)',
+          quantity: 1,
+          amount: 1000,
+          url: 'Product URL (optional)'
+        }, {
+          name: 'Product Name 2',
+          description: 'Product Description (optional)',
+          image: 'Product Image URL (optional)',
+          sku: 'Stock Keeping Unit (optional)',
+          quantity: '10oz',
+          amount: 2000,
+          url: 'Product URL (optional)'
+        }]})
+          .then(function (body) {
+            scope.done()
+            done()
+          })
     })
   })
 })

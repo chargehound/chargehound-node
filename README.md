@@ -65,5 +65,6 @@ To deploy a new version of the SDK, perform the following steps:
 
  1. Update the CHANGELOG to describe what feature have been added.
  2. Bump the version number in `package.json`
- 3. Rebuild and deploy the module with:
+ 3. Rebuild and deploy the pakage with:
    ```npm publish```
+ 4. Confirm the new package version is available at [https://www.npmjs.com/package/chargehound](https://www.npmjs.com/package/chargehound)  

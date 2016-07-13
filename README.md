@@ -59,3 +59,11 @@ Run the tests using [`npm`](https://www.npmjs.com/):
 $ npm test
 ```
 
+## Deployment
+
+To deploy a new version of the SDK, perform the following steps:
+
+ 1. Update the CHANGELOG to describe what feature have been added.
+ 2. Bump the version number in `package.json`
+ 3. Rebuild and deploy the module with:
+   ```npm publish```

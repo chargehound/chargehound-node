@@ -11,21 +11,21 @@ chargehound.Disputes.list()
       template: 'crowdfunding',
       fields: { 'customer_ip': '0.0.0.0' },
       products: [{
-        name: 'Product Name 1',
-        description: 'Product Description (optional)',
-        image: 'Product Image URL (optional)',
-        sku: 'Stock Keeping Unit (optional)',
+        name: 'Saxophone',
+        description: 'Alto saxophone, with carrying case',
+        image: 'http://s3.amazonaws.com/chargehound/saxophone.png',
+        sku: '17283001272',
         quantity: 1,
-        amount: 1000,
-        url: 'Product URL (optional)'
+        amount: 20000,
+        url: 'http://www.example.com'
       }, {
-        name: 'Product Name 2',
-        description: 'Product Description (optional)',
-        image: 'Product Image URL (optional)',
-        sku: 'Stock Keeping Unit (optional)',
-        quantity: '10oz',
-        amount: 2000,
-        url: 'Product URL (optional)'
+        name: 'Milk',
+        description: 'Semi-skimmed Organic',
+        image: 'http://s3.amazonaws.com/chargehound/milk.png',
+        sku: '26377382910',
+        quantity: '64oz',
+        amount: 400,
+        url: 'http://www.example.com'
       }]
     })
   })

@@ -62,6 +62,36 @@ describe('dispute', function () {
           done()
         })
     })
+
+    it('Can include product information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+          .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}})
+          .reply(201, {'id': 'dp_123'})
+
+      chargehound.Disputes.submit('dp_123', {
+        fields: {customer_name: 'Susie'},
+        products: [{
+          name: 'Saxophone',
+          description: 'Alto saxophone, with carrying case',
+          image: 'http://s3.amazonaws.com/chargehound/saxophone.png',
+          sku: '17283001272',
+          quantity: 1,
+          amount: 20000,
+          url: 'http://www.example.com'
+        }, {
+          name: 'Milk',
+          description: 'Semi-skimmed Organic',
+          image: 'http://s3.amazonaws.com/chargehound/milk.png',
+          sku: '26377382910',
+          quantity: '64oz',
+          amount: 400,
+          url: 'http://www.example.com'
+        }]})
+        .then(function (body) {
+          scope.done()
+          done()
+        })
+    })
   })
 
   describe('update', function (done) {
@@ -74,6 +104,36 @@ describe('dispute', function () {
           scope.done()
           done()
         })
+    })
+
+    it('Can include product information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+          .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}})
+          .reply(201, {'id': 'dp_123'})
+
+      chargehound.Disputes.update('dp_123', {
+        fields: {customer_name: 'Susie'},
+        products: [{
+          name: 'Saxophone',
+          description: 'Alto saxophone, with carrying case',
+          image: 'http://s3.amazonaws.com/chargehound/saxophone.png',
+          sku: '17283001272',
+          quantity: 1,
+          amount: 20000,
+          url: 'http://www.example.com'
+        }, {
+          name: 'Milk',
+          description: 'Semi-skimmed Organic',
+          image: 'http://s3.amazonaws.com/chargehound/milk.png',
+          sku: '26377382910',
+          quantity: '64oz',
+          amount: 400,
+          url: 'http://www.example.com'
+        }]})
+          .then(function (body) {
+            scope.done()
+            done()
+          })
     })
   })
 })

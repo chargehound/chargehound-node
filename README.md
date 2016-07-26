@@ -59,3 +59,12 @@ Run the tests using [`npm`](https://www.npmjs.com/):
 $ npm test
 ```
 
+## Deployment
+
+To deploy a new version of the SDK, perform the following steps:
+
+ 1. Update the CHANGELOG to describe what feature have been added.
+ 2. Bump the version number in `package.json`
+ 3. Rebuild and deploy the package with:
+   ```npm publish```
+ 4. Confirm the new package version is available at [https://www.npmjs.com/package/chargehound](https://www.npmjs.com/package/chargehound)  

@@ -9,7 +9,24 @@ chargehound.Disputes.list()
     console.log(`First dispute id: ${first.id}`)
     return chargehound.Disputes.submit(first.id, {
       template: 'crowdfunding',
-      fields: { 'customer_ip': '001' }
+      fields: { 'customer_ip': '0.0.0.0' },
+      products: [{
+        name: 'Saxophone',
+        description: 'Alto saxophone, with carrying case',
+        image: 'http://s3.amazonaws.com/chargehound/saxophone.png',
+        sku: '17283001272',
+        quantity: 1,
+        amount: 20000,
+        url: 'http://www.example.com'
+      }, {
+        name: 'Milk',
+        description: 'Semi-skimmed Organic',
+        image: 'http://s3.amazonaws.com/chargehound/milk.png',
+        sku: '26377382910',
+        quantity: '64oz',
+        amount: 400,
+        url: 'http://www.example.com'
+      }]
     })
   })
   .then(function (res) {

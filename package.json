@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "bluebird": "^3.3.5",
-    "es6-error": "^2.1.0",
-    "lodash.merge": "^4.3.5"
+    "es6-error": "^2.1.0"
   }
 }

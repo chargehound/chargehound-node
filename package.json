@@ -40,7 +40,6 @@
     "standard": "^6.0.8"
   },
   "dependencies": {
-    "bluebird": "^3.3.5",
     "es6-error": "^2.1.0"
   }
 }

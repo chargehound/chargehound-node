@@ -53,7 +53,6 @@ chargehound.Disputes.retrieve('dp_xxx').then(dispute => {
 });
 ```
 
-
 ## Documentation
 
 [Disputes](https://www.chargehound.com/docs/api/index.html?javascript#disputes)

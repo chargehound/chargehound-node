@@ -8,6 +8,8 @@
 
 ## Usage
 
+### Requests
+
 Every resource is accessed via the `chargehound` instance:
 
 ```js
@@ -35,6 +37,22 @@ chargehound.Disputes.submit('dp_xxx', {fields: {customer_name: 'Susie'}})
     // Deal with an error
   });
 ```
+
+### Responses
+
+Responses from the API are automatically parsed from JSON and returned as JavaScript objects. 
+
+Responses also include the HTTP status code on the `response` object as the `statusCode` field.
+
+```js
+chargehound.Disputes.retrieve('dp_xxx').then(dispute => {
+  console.log(dispute.state)
+  // 'needs_response'
+  console.log(dispute.response.statusCode)
+  // 200
+});
+```
+
 
 ## Documentation
 

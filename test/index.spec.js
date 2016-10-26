@@ -44,7 +44,7 @@ describe('chargehound', function () {
         done(err)
         return
       }
-      expect(res).to.eql({'data': [{'id': 'dp_123'}]})
+      expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'statusCode': 200 }})
       scope.done()
       done()
     })

@@ -2,6 +2,7 @@
 
 const Chargehound = require('../../lib')
 const clientVersion = require('../../package.json').version
+const expect = require('chai').expect
 const nock = require('nock')
 
 const chargehound = new Chargehound('API_KEY')
@@ -33,6 +34,25 @@ const productInformation = [{
 }]
 
 describe('dispute', function () {
+  describe('response', function () {
+    it('exposes the response status code', function (done) {
+      const scope = nock('https://api.chargehound.com')
+        .get('/v1/disputes')
+        .reply(777, {'data': [{'id': 'dp_123'}]})
+
+      const chargehound = new Chargehound('API_KEY')
+      chargehound.Disputes.list((err, res) => {
+        if (err) {
+          done(err)
+          return
+        }
+        expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'statusCode': 777 }})
+        scope.done()
+        done()
+      })
+    })
+  })
+
   describe('create', function () {
     it('Sends the correct request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders })

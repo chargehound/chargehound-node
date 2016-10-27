@@ -8,7 +8,13 @@ const nock = require('nock')
 const chargehound = new Chargehound('API_KEY')
 const CHARGEHOUND_USERAGENT = 'Chargehound/v1 NodeBindings/' + clientVersion
 
-const reqheaders = {
+const getHeaders = {
+  'user-agent': CHARGEHOUND_USERAGENT,
+  accept: 'application/json',
+  host: 'api.chargehound.com'
+}
+
+const postHeaders = {
   'user-agent': CHARGEHOUND_USERAGENT,
   'content-type': 'application/json',
   accept: 'application/json',
@@ -36,7 +42,7 @@ const productInformation = [{
 describe('dispute', function () {
   describe('response', function () {
     it('exposes the response status code', function (done) {
-      const scope = nock('https://api.chargehound.com')
+      const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })
         .get('/v1/disputes')
         .reply(777, {'data': [{'id': 'dp_123'}]})
 
@@ -46,7 +52,7 @@ describe('dispute', function () {
           done(err)
           return
         }
-        expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'statusCode': 777 }})
+        expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 777 }})
         scope.done()
         done()
       })
@@ -55,7 +61,7 @@ describe('dispute', function () {
 
   describe('create', function () {
     it('Sends the correct request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
         .post('/v1/disputes', {'id': 'dp_123'})
         .basicAuth({
           user: 'API_KEY',
@@ -71,7 +77,7 @@ describe('dispute', function () {
 
   describe('retrieve', function () {
     it('Sends the correct request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })
         .get('/v1/disputes/dp_123')
         .basicAuth({
           user: 'API_KEY',
@@ -86,7 +92,7 @@ describe('dispute', function () {
 
   describe('list', function () {
     it('Sends the correct request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })
         .get('/v1/disputes')
         .basicAuth({
           user: 'API_KEY',
@@ -101,7 +107,7 @@ describe('dispute', function () {
 
   describe('submit', function () {
     it('Sends the correct request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
         .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}})
         .basicAuth({
           user: 'API_KEY',
@@ -115,7 +121,7 @@ describe('dispute', function () {
     })
 
     it('Can include product information in the request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
         .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}, products: productInformation})
         .basicAuth({
           user: 'API_KEY',
@@ -135,7 +141,7 @@ describe('dispute', function () {
 
   describe('update', function () {
     it('Sends the correct request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
         .put('/v1/disputes/dp_123', {fields: {customer_name: 'Susie'}})
         .basicAuth({
           user: 'API_KEY',
@@ -149,7 +155,7 @@ describe('dispute', function () {
     })
 
     it('Can include product information in the request', function () {
-      const scope = nock('https://api.chargehound.com', { reqheaders })
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
         .put('/v1/disputes/dp_123', {fields: {customer_name: 'Susie'}, products: productInformation})
         .basicAuth({
           user: 'API_KEY',

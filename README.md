@@ -8,13 +8,13 @@
 
 ## Usage
 
-### Requests
-
 Every resource is accessed via the `chargehound` instance:
 
 ```js
 var chargehound = require('chargehound')('{ YOUR_API_KEY }');
 ```
+
+### Requests
 
 Every resource method accepts an optional callback as the last argument:
 
@@ -42,13 +42,13 @@ chargehound.Disputes.submit('dp_xxx', {fields: {customer_name: 'Susie'}})
 
 Responses from the API are automatically parsed from JSON and returned as JavaScript objects. 
 
-Responses also include the HTTP status code on the `response` object as the `statusCode` field.
+Responses also include the HTTP status code on the `response` object as the `status` field.
 
 ```js
 chargehound.Disputes.retrieve('dp_xxx').then(dispute => {
   console.log(dispute.state)
   // 'needs_response'
-  console.log(dispute.response.statusCode)
+  console.log(dispute.response.status)
   // 200
 });
 ```

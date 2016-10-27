@@ -13,5 +13,4 @@
 2.0.0 October, 2016
   - Add Dispute create method
   - Expose response status codes
-  - Add query parameter to Dispute submit and update methods
   - Remove CI support for Node 0.11 and 5.0

@@ -90,6 +90,21 @@ describe('dispute', function () {
     })
   })
 
+  describe('response', function () {
+    it('Sends the correct request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })
+        .get('/v1/disputes/dp_123/response')
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(200, {'id': 'dp_123'})
+      return chargehound.Disputes.response('dp_123').then(function (body) {
+        scope.done()
+      })
+    })
+  })
+
   describe('list', function () {
     it('Sends the correct request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })

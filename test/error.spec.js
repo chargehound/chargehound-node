@@ -44,7 +44,7 @@ describe('errors', function () {
 
     chargehound.Disputes.list()
     .catch(function (err) {
-      expect(err.code).to.eql('ESOCKETTIMEDOUT')
+      expect(err.name).to.eql('ChargehoundTimeout')
       scope.done()
       done()
     })

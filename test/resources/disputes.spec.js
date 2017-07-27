@@ -187,4 +187,22 @@ describe('dispute', function () {
       })
     })
   })
+
+  describe('accept', function () {
+    it('Sends the correct request', function () {
+      // Does not set content type b/c there is no body
+      const reqheaders = getHeaders
+      const scope = nock('https://api.chargehound.com', { reqheaders })
+        .post('/v1/disputes/dp_123/accept')
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(200, {'id': 'dp_123'})
+      return chargehound.Disputes.accept('dp_123')
+        .then(function (body) {
+          scope.done()
+        })
+    })
+  })
 })

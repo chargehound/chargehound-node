@@ -50,6 +50,26 @@ describe('chargehound', function () {
     })
   })
 
+  it('allows overriding version', function (done) {
+    const version = '1999-01-01'
+    const scope = nock('https://api.chargehound.com',
+      { reqheaders: { 'chargehound-version': version } })
+      .get('/v1/disputes')
+      .reply(200, {'data': [{'id': 'dp_123'}]})
+
+    const options = { version: version }
+    const chargehound = new Chargehound('API_KEY', options)
+    chargehound.Disputes.list((err, res) => {
+      if (err) {
+        done(err)
+        return
+      }
+      expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 200 }})
+      scope.done()
+      done()
+    })
+  })
+
   it('allows overriding host', function () {
     const options = { host: 'test' }
     const chargehound = new Chargehound('API_KEY', options)

@@ -1,6 +1,8 @@
 node_modules
 scratchpad.js
 dist
+npm-debug.log
+package-lock.json
 .npm-debug.log
 .idea/
 *.iml

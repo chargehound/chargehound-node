@@ -1,4 +1,5 @@
 node_modules
+scratchpad.js
 dist
 .npm-debug.log
 .idea/

@@ -21,3 +21,6 @@
 
 2.1.1 Sept, 2017
   - Fix query string params
+
+2.2.0 Sept, 2017
+  - Add support for overriding chargehound version, protocol, and port

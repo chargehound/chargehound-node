@@ -1,6 +1,6 @@
 {
   "name": "chargehound",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Automatically fight disputes in Stripe",
   "main": "dist/index.js",
   "engines": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "babel lib -d dist",
-    "prepublish": "rm -rf dist && npm run build",
+    "prepare": "rm -rf dist && npm run build",
     "test": "standard && mocha --compilers js:babel-register"
   },
   "repository": {

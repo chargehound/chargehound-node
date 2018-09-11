@@ -1,3 +1,14 @@
-lib
-test
+*.iml
+.babelrc
+.eslintignore
+.idea/
+.node-version
+.npm-debug.log
+.travis.yml
+CHANGELOG
 example
+lib
+npm-debug.log
+scratchpad.js
+scratchpad/
+test

@@ -1,6 +1,6 @@
 {
   "name": "chargehound",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Automatically fight disputes",
   "main": "dist/index.js",
   "engines": {

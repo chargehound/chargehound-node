@@ -25,5 +25,5 @@
 2.2.0 November, 2017
   - Add support for overriding chargehound version, protocol, and port
 
-2.2.1 September, 2018
-- Update docs
+3.0.0 September, 2018
+- Update docs, drop support for Node 0.12

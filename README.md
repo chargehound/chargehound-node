@@ -19,7 +19,7 @@ var chargehound = require('chargehound')('{ YOUR_API_KEY }');
 Every resource method accepts an optional callback as the last argument:
 
 ```js
-chargehound.Disputes.submit('dp_xxx', {fields: {customer_name: 'Susie'}},
+chargehound.Disputes.submit('dp_123', {fields: {customer_name: 'Susie'}},
   function (err, dispute) {
     err; // null if no error occurred
     dispute; // the submitted dispute object
@@ -30,7 +30,7 @@ chargehound.Disputes.submit('dp_xxx', {fields: {customer_name: 'Susie'}},
 Additionally, every resource method returns a promise, so you don't have to use the regular callback. E.g.
 
 ```js
-chargehound.Disputes.submit('dp_xxx', {fields: {customer_name: 'Susie'}})
+chargehound.Disputes.submit('dp_123', {fields: {customer_name: 'Susie'}})
   .then(function (dispute) {
     // Success
   .catch(function (err) {
@@ -45,7 +45,7 @@ Responses from the API are automatically parsed from JSON and returned as JavaSc
 Responses also include the HTTP status code on the `response` object as the `status` field.
 
 ```js
-chargehound.Disputes.retrieve('dp_xxx').then(dispute => {
+chargehound.Disputes.retrieve('dp_123').then(dispute => {
   console.log(dispute.state)
   // 'needs_response'
   console.log(dispute.response.status)

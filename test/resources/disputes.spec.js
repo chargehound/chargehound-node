@@ -131,6 +131,20 @@ describe('dispute', function () {
         scope.done()
       })
     })
+
+    it('Can list by multiple states', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })
+        .get('/v1/disputes?state=needs_response&state=warning_needs_response')
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(200, {'data': [{'id': 'dp_123'}]})
+      return chargehound.Disputes.list({state: ['needs_response', 'warning_needs_response']})
+        .then(function (body) {
+          scope.done()
+        })
+    })
   })
 
   describe('submit', function () {

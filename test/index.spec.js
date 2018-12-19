@@ -29,8 +29,15 @@ describe('chargehound', function () {
   })
 
   it('allows the use of promises', function () {
+    const scope = nock('https://api.chargehound.com')
+      .get('/v1/disputes')
+      .reply(200, {'data': [{'id': 'dp_123'}]})
+
     const chargehound = new Chargehound('API_KEY')
-    expect(chargehound.Disputes.list().then).to.be.instanceof(Function)
+    return chargehound.Disputes.list().then((res) => {
+      expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 200 }})
+      scope.done()
+    })
   })
 
   it('allows the use of callbacks', function (done) {

@@ -1,15 +1,15 @@
 {
   "name": "chargehound",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Automatically fight disputes",
   "main": "dist/index.js",
   "engines": {
-    "node": ">= v0.10.0"
+    "node": ">= v4"
   },
   "scripts": {
     "build": "babel lib -d dist",
     "prepare": "rm -rf dist && npm run build",
-    "test": "standard && mocha --compilers js:babel-register"
+    "test": "standard && mocha"
   },
   "repository": {
     "type": "git",

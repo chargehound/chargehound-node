@@ -30,3 +30,6 @@
 
 3.0.1 September, 2018
 - Fix npmignore
+
+3.0.2 April, 2019
+- Add tests for correspondence information

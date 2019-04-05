@@ -33,3 +33,6 @@
 
 4.0.0 April, 2019
 - Add tests for correspondence information. Remove babel build.
+
+4.0.1 April, 2019
+- Remove dist from published data.

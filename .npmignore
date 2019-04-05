@@ -7,7 +7,6 @@
 .travis.yml
 CHANGELOG
 example
-lib
 npm-debug.log
 scratchpad.js
 scratchpad/

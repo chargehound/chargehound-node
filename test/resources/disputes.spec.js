@@ -39,6 +39,20 @@ const productInformation = [{
   url: 'http://www.example.com'
 }]
 
+const correspondenceInformation = [{
+  'to': 'customer@example.com',
+  'from': 'noreply@example.com',
+  'subject': 'Your Order',
+  'body': 'Your order was received.',
+  'caption': 'Order confirmation email.'
+}, {
+  'to': 'customer@example.com',
+  'from': 'noreply@example.com',
+  'subject': 'Your Order',
+  'body': 'Your order was delivered.',
+  'caption': 'Delivery confirmation email.'
+}]
+
 describe('dispute', function () {
   describe('response', function () {
     it('exposes the response status code', function (done) {
@@ -179,6 +193,24 @@ describe('dispute', function () {
         scope.done()
       })
     })
+
+    it('Can include product information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+        .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}, correspondence: correspondenceInformation})
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(201, {'id': 'dp_123'})
+
+      return chargehound.Disputes.submit('dp_123', {
+        fields: {customer_name: 'Susie'},
+        correspondence: correspondenceInformation
+      })
+      .then(function (body) {
+        scope.done()
+      })
+    })
   })
 
   describe('update', function () {
@@ -208,6 +240,24 @@ describe('dispute', function () {
       return chargehound.Disputes.update('dp_123', {
         fields: {customer_name: 'Susie'},
         products: productInformation
+      })
+      .then(function (body) {
+        scope.done()
+      })
+    })
+
+    it('Can include product information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+        .put('/v1/disputes/dp_123', {fields: {customer_name: 'Susie'}, correspondence: correspondenceInformation})
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(201, {'id': 'dp_123'})
+
+      return chargehound.Disputes.update('dp_123', {
+        fields: {customer_name: 'Susie'},
+        correspondence: correspondenceInformation
       })
       .then(function (body) {
         scope.done()

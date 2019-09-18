@@ -36,7 +36,7 @@ describe('errors', function () {
   })
 
   it('should throw a timeout error', function (done) {
-    const chargehound = new Chargehound('API_KEY', { timeout: 50 })
+    const chargehound = new Chargehound('API_KEY', { timeout: 1 })
     const scope = nock('https://api.chargehound.com')
       .get('/v1/disputes')
       .socketDelay(100)

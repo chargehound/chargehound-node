@@ -1,10 +1,10 @@
 {
   "name": "chargehound",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Automatically fight disputes",
   "main": "lib/index.js",
   "engines": {
-    "node": ">= v4"
+    "node": ">= v8"
   },
   "scripts": {
     "test": "standard && mocha"

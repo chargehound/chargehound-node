@@ -53,6 +53,18 @@ const correspondenceInformation = [{
   'caption': 'Delivery confirmation email.'
 }]
 
+const pastPaymentsInformation = [{
+  'id': 'ch_1',
+  'amount': 20000,
+  'currency': 'usd',
+  'charged_at': '2019-09-10 11:09:41PM UTC'
+}, {
+  'id': 'ch_2',
+  'amount': 50000,
+  'currency': 'usd',
+  'charged_at': '2019-09-03 11:09:41PM UTC'
+}]
+
 describe('dispute', function () {
   describe('response', function () {
     it('exposes the response status code', function (done) {
@@ -194,7 +206,7 @@ describe('dispute', function () {
       })
     })
 
-    it('Can include product information in the request', function () {
+    it('Can include correspondence information in the request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
         .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}, correspondence: correspondenceInformation})
         .basicAuth({
@@ -206,6 +218,24 @@ describe('dispute', function () {
       return chargehound.Disputes.submit('dp_123', {
         fields: {customer_name: 'Susie'},
         correspondence: correspondenceInformation
+      })
+      .then(function (body) {
+        scope.done()
+      })
+    })
+
+    it('Can include past payments information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+        .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}, past_payments: pastPaymentsInformation})
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(201, {'id': 'dp_123'})
+
+      return chargehound.Disputes.submit('dp_123', {
+        fields: {customer_name: 'Susie'},
+        past_payments: pastPaymentsInformation
       })
       .then(function (body) {
         scope.done()

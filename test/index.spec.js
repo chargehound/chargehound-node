@@ -31,11 +31,11 @@ describe('chargehound', function () {
   it('allows the use of promises', function () {
     const scope = nock('https://api.chargehound.com')
       .get('/v1/disputes')
-      .reply(200, {'data': [{'id': 'dp_123'}]})
+      .reply(200, { data: [{ id: 'dp_123' }] })
 
     const chargehound = new Chargehound('API_KEY')
     return chargehound.Disputes.list().then((res) => {
-      expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 200 }})
+      expect(res).to.eql({ data: [{ id: 'dp_123' }], response: { status: 200 } })
       scope.done()
     })
   })
@@ -43,7 +43,7 @@ describe('chargehound', function () {
   it('allows the use of callbacks', function (done) {
     const scope = nock('https://api.chargehound.com')
       .get('/v1/disputes')
-      .reply(200, {'data': [{'id': 'dp_123'}]})
+      .reply(200, { data: [{ id: 'dp_123' }] })
 
     const chargehound = new Chargehound('API_KEY')
     chargehound.Disputes.list((err, res) => {
@@ -51,7 +51,7 @@ describe('chargehound', function () {
         done(err)
         return
       }
-      expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 200 }})
+      expect(res).to.eql({ data: [{ id: 'dp_123' }], response: { status: 200 } })
       scope.done()
       done()
     })
@@ -62,7 +62,7 @@ describe('chargehound', function () {
     const scope = nock('https://api.chargehound.com',
       { reqheaders: { 'chargehound-version': version } })
       .get('/v1/disputes')
-      .reply(200, {'data': [{'id': 'dp_123'}]})
+      .reply(200, { data: [{ id: 'dp_123' }] })
 
     const options = { version: version }
     const chargehound = new Chargehound('API_KEY', options)
@@ -71,7 +71,7 @@ describe('chargehound', function () {
         done(err)
         return
       }
-      expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 200 }})
+      expect(res).to.eql({ data: [{ id: 'dp_123' }], response: { status: 200 } })
       scope.done()
       done()
     })

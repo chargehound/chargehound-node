@@ -1,10 +1,10 @@
 {
   "name": "chargehound",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Automatically fight disputes",
   "main": "lib/index.js",
   "engines": {
-    "node": ">= v4"
+    "node": ">= v8"
   },
   "scripts": {
     "test": "standard && mocha"
@@ -28,12 +28,12 @@
   },
   "homepage": "https://github.com/chargehound/chargehound-node#readme",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^5.2.0",
-    "nock": "^9.6.1",
-    "standard": "^6.0.8"
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "nock": "^11.3.4",
+    "standard": "^14.3.0"
   },
   "dependencies": {
-    "es6-error": "^2.1.0"
+    "es6-error": "^4.1.1"
   }
 }

@@ -9,7 +9,7 @@ chargehound.Disputes.list()
     console.log(`First dispute id: ${first.id}`)
     return chargehound.Disputes.submit(first.id, {
       template: 'crowdfunding',
-      fields: { 'customer_ip': '0.0.0.0' },
+      fields: { customer_ip: '0.0.0.0' },
       products: [{
         name: 'Saxophone',
         description: 'Alto saxophone, with carrying case',

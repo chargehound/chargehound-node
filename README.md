@@ -68,7 +68,7 @@ $ git clone git@github.com:chargehound/chargehound-node.git
 $ npm install
 ```
 
-The source code is written in ES6. For development you will need Node.js >= v4.4.3.
+The source code is written in ES6. For development you will need Node.js >= v8.
 
 Run the tests using [`npm`](https://www.npmjs.com/):
 

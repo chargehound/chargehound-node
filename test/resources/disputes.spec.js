@@ -40,17 +40,29 @@ const productInformation = [{
 }]
 
 const correspondenceInformation = [{
-  'to': 'customer@example.com',
-  'from': 'noreply@example.com',
-  'subject': 'Your Order',
-  'body': 'Your order was received.',
-  'caption': 'Order confirmation email.'
+  to: 'customer@example.com',
+  from: 'noreply@example.com',
+  subject: 'Your Order',
+  body: 'Your order was received.',
+  caption: 'Order confirmation email.'
 }, {
-  'to': 'customer@example.com',
-  'from': 'noreply@example.com',
-  'subject': 'Your Order',
-  'body': 'Your order was delivered.',
-  'caption': 'Delivery confirmation email.'
+  to: 'customer@example.com',
+  from: 'noreply@example.com',
+  subject: 'Your Order',
+  body: 'Your order was delivered.',
+  caption: 'Delivery confirmation email.'
+}]
+
+const pastPaymentsInformation = [{
+  id: 'ch_1',
+  amount: 20000,
+  currency: 'usd',
+  charged_at: '2019-09-10 11:09:41PM UTC'
+}, {
+  id: 'ch_2',
+  amount: 50000,
+  currency: 'usd',
+  charged_at: '2019-09-03 11:09:41PM UTC'
 }]
 
 describe('dispute', function () {
@@ -58,7 +70,7 @@ describe('dispute', function () {
     it('exposes the response status code', function (done) {
       const scope = nock('https://api.chargehound.com', { reqheaders: getHeaders })
         .get('/v1/disputes')
-        .reply(777, {'data': [{'id': 'dp_123'}]})
+        .reply(777, { data: [{ id: 'dp_123' }] })
 
       const chargehound = new Chargehound('API_KEY')
       chargehound.Disputes.list((err, res) => {
@@ -66,7 +78,7 @@ describe('dispute', function () {
           done(err)
           return
         }
-        expect(res).to.eql({'data': [{'id': 'dp_123'}], 'response': { 'status': 777 }})
+        expect(res).to.eql({ data: [{ id: 'dp_123' }], response: { status: 777 } })
         scope.done()
         done()
       })
@@ -76,13 +88,13 @@ describe('dispute', function () {
   describe('create', function () {
     it('Sends the correct request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .post('/v1/disputes', {'id': 'dp_123'})
+        .post('/v1/disputes', { id: 'dp_123' })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(201, {'id': 'dp_123'})
-      return chargehound.Disputes.create({'id': 'dp_123'})
+        .reply(201, { id: 'dp_123' })
+      return chargehound.Disputes.create({ id: 'dp_123' })
         .then(function (body) {
           scope.done()
         })
@@ -97,7 +109,7 @@ describe('dispute', function () {
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'id': 'dp_123'})
+        .reply(200, { id: 'dp_123' })
       return chargehound.Disputes.retrieve('dp_123').then(function (body) {
         scope.done()
       })
@@ -112,7 +124,7 @@ describe('dispute', function () {
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'id': 'dp_123'})
+        .reply(200, { id: 'dp_123' })
       return chargehound.Disputes.response('dp_123').then(function (body) {
         scope.done()
       })
@@ -127,7 +139,7 @@ describe('dispute', function () {
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'data': [{'id': 'dp_123'}]})
+        .reply(200, { data: [{ id: 'dp_123' }] })
       return chargehound.Disputes.list().then(function (body) {
         scope.done()
       })
@@ -140,8 +152,8 @@ describe('dispute', function () {
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'data': [{'id': 'dp_123'}]})
-      return chargehound.Disputes.list({state: 'needs_response'}).then(function (body) {
+        .reply(200, { data: [{ id: 'dp_123' }] })
+      return chargehound.Disputes.list({ state: 'needs_response' }).then(function (body) {
         scope.done()
       })
     })
@@ -153,8 +165,8 @@ describe('dispute', function () {
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'data': [{'id': 'dp_123'}]})
-      return chargehound.Disputes.list({state: ['needs_response', 'warning_needs_response']})
+        .reply(200, { data: [{ id: 'dp_123' }] })
+      return chargehound.Disputes.list({ state: ['needs_response', 'warning_needs_response'] })
         .then(function (body) {
           scope.done()
         })
@@ -164,13 +176,13 @@ describe('dispute', function () {
   describe('submit', function () {
     it('Sends the correct request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}})
+        .post('/v1/disputes/dp_123/submit', { fields: { customer_name: 'Susie' } })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(201, {'id': 'dp_123'})
-      return chargehound.Disputes.submit('dp_123', {fields: {customer_name: 'Susie'}})
+        .reply(201, { id: 'dp_123' })
+      return chargehound.Disputes.submit('dp_123', { fields: { customer_name: 'Susie' } })
         .then(function (body) {
           scope.done()
         })
@@ -178,51 +190,69 @@ describe('dispute', function () {
 
     it('Can include product information in the request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}, products: productInformation})
+        .post('/v1/disputes/dp_123/submit', { fields: { customer_name: 'Susie' }, products: productInformation })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(201, {'id': 'dp_123'})
+        .reply(201, { id: 'dp_123' })
 
       return chargehound.Disputes.submit('dp_123', {
-        fields: {customer_name: 'Susie'},
+        fields: { customer_name: 'Susie' },
         products: productInformation
       })
-      .then(function (body) {
-        scope.done()
-      })
+        .then(function (body) {
+          scope.done()
+        })
     })
 
-    it('Can include product information in the request', function () {
+    it('Can include correspondence information in the request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .post('/v1/disputes/dp_123/submit', {fields: {customer_name: 'Susie'}, correspondence: correspondenceInformation})
+        .post('/v1/disputes/dp_123/submit', { fields: { customer_name: 'Susie' }, correspondence: correspondenceInformation })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(201, {'id': 'dp_123'})
+        .reply(201, { id: 'dp_123' })
 
       return chargehound.Disputes.submit('dp_123', {
-        fields: {customer_name: 'Susie'},
+        fields: { customer_name: 'Susie' },
         correspondence: correspondenceInformation
       })
-      .then(function (body) {
-        scope.done()
+        .then(function (body) {
+          scope.done()
+        })
+    })
+
+    it('Can include past payments information in the request', function () {
+      const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
+        .post('/v1/disputes/dp_123/submit', { fields: { customer_name: 'Susie' }, past_payments: pastPaymentsInformation })
+        .basicAuth({
+          user: 'API_KEY',
+          pass: ''
+        })
+        .reply(201, { id: 'dp_123' })
+
+      return chargehound.Disputes.submit('dp_123', {
+        fields: { customer_name: 'Susie' },
+        past_payments: pastPaymentsInformation
       })
+        .then(function (body) {
+          scope.done()
+        })
     })
   })
 
   describe('update', function () {
     it('Sends the correct request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .put('/v1/disputes/dp_123', {fields: {customer_name: 'Susie'}})
+        .put('/v1/disputes/dp_123', { fields: { customer_name: 'Susie' } })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'id': 'dp_123'})
-      return chargehound.Disputes.update('dp_123', {fields: {customer_name: 'Susie'}})
+        .reply(200, { id: 'dp_123' })
+      return chargehound.Disputes.update('dp_123', { fields: { customer_name: 'Susie' } })
         .then(function (body) {
           scope.done()
         })
@@ -230,38 +260,38 @@ describe('dispute', function () {
 
     it('Can include product information in the request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .put('/v1/disputes/dp_123', {fields: {customer_name: 'Susie'}, products: productInformation})
+        .put('/v1/disputes/dp_123', { fields: { customer_name: 'Susie' }, products: productInformation })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(201, {'id': 'dp_123'})
+        .reply(201, { id: 'dp_123' })
 
       return chargehound.Disputes.update('dp_123', {
-        fields: {customer_name: 'Susie'},
+        fields: { customer_name: 'Susie' },
         products: productInformation
       })
-      .then(function (body) {
-        scope.done()
-      })
+        .then(function (body) {
+          scope.done()
+        })
     })
 
     it('Can include product information in the request', function () {
       const scope = nock('https://api.chargehound.com', { reqheaders: postHeaders })
-        .put('/v1/disputes/dp_123', {fields: {customer_name: 'Susie'}, correspondence: correspondenceInformation})
+        .put('/v1/disputes/dp_123', { fields: { customer_name: 'Susie' }, correspondence: correspondenceInformation })
         .basicAuth({
           user: 'API_KEY',
           pass: ''
         })
-        .reply(201, {'id': 'dp_123'})
+        .reply(201, { id: 'dp_123' })
 
       return chargehound.Disputes.update('dp_123', {
-        fields: {customer_name: 'Susie'},
+        fields: { customer_name: 'Susie' },
         correspondence: correspondenceInformation
       })
-      .then(function (body) {
-        scope.done()
-      })
+        .then(function (body) {
+          scope.done()
+        })
     })
   })
 
@@ -275,7 +305,7 @@ describe('dispute', function () {
           user: 'API_KEY',
           pass: ''
         })
-        .reply(200, {'id': 'dp_123'})
+        .reply(200, { id: 'dp_123' })
       return chargehound.Disputes.accept('dp_123')
         .then(function (body) {
           scope.done()

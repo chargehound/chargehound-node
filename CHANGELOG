@@ -40,3 +40,6 @@
 5.0.0 Sept, 2019
   - Add tests for past payments
   - Drop support for Node versions < 8
+
+5.1.0 Feb, 2021
+  - Surface error types

@@ -23,13 +23,14 @@ describe('errors', function () {
     const chargehound = new Chargehound('API_KEY')
     const scope = nock('https://api.chargehound.com')
       .get('/v1/disputes/dp_123')
-      .reply(400, { error: { status: 400, message: 'Bad request' } })
+      .reply(400, { error: { status: 400, message: 'Bad request', type: 'invalid_request' } })
 
     chargehound.Disputes.retrieve('dp_123')
       .catch(function (err) {
         expect(err.name).to.eql('ChargehoundBadRequestError')
         expect(err.status).to.eql(400)
         expect(err.message).to.eql('Bad request')
+        expect(err.type).to.eql('invalid_request')
         scope.done()
         done()
       })

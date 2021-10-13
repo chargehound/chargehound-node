@@ -1,6 +1,6 @@
 # Chargehound node.js bindings 
 
-[![Build Status](https://github.com/chargehound/chargehound-api/actions/workflows/test-js.yml/badge.svg)](https://github.com/chargehound/chargehound-node/actions/workflows/test-js.yaml) [![npm version](https://badge.fury.io/js/chargehound.svg)](https://badge.fury.io/js/chargehound)
+[![Build Status](https://github.com/chargehound/chargehound-node/actions/workflows/test-js.yml/badge.svg)](https://github.com/chargehound/chargehound-node/actions/workflows/test-js.yaml) [![npm version](https://badge.fury.io/js/chargehound.svg)](https://badge.fury.io/js/chargehound)
 
 ## Installation
 

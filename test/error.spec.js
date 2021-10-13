@@ -9,12 +9,15 @@ describe('errors', function () {
   })
 
   it('should propagate request errors', function (done) {
-    const options = { host: 'test' }
-    const chargehound = new Chargehound('API_KEY', options)
+    const chargehound = new Chargehound('API_KEY')
+    const scope = nock('https://api.chargehound.com')
+      .get('/v1/disputes')
+      .reply(500, { error: { status: 500, message: 'Unexpected error' } })
 
     chargehound.Disputes.list()
       .catch(function (err) {
-        expect(err.code).to.eql('ENOTFOUND')
+        expect(err.status).to.eql(500)
+        scope.done()
         done()
       })
   })

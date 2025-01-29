@@ -1,0 +1,10 @@
+name: Dependency Review
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  dependency-review:
+    uses: chargehound/security-workflows-public/.github/workflows/dependency-review.yml@main

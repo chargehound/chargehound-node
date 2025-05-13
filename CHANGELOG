@@ -46,3 +46,7 @@
 
 6.0.0 Sept, 2023
   - Force all requests to go through HTTPS
+
+7.0.0 Map, 2025
+  - Added Node 22 support
+  - Improved Disputes PUT request socket handling

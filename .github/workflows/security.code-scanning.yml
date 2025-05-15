@@ -10,3 +10,5 @@ on:
 jobs:
   codeql-javascript:
     uses: chargehound/security-workflows-public/.github/workflows/codeql-javascript.yml@main
+    secrets:
+      DATADOG_API_KEY: ${{ secrets.DATADOG_PAYPAL_QA_TOKEN }}     
